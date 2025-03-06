@@ -1,10 +1,9 @@
 resource "aws_key_pair" "deployer" {
   key_name   = "terra-automate-key"
-  public_key = file("/Users/shubham/Documents/work/TrainWithShubham/terra-practice/terra-key.pub")
+  public_key = file("/Users/subhashyadav/Desktop/Devops/mega-project/test-mern-yt/terraform/terra-key.pub")
 }
 
 resource "aws_default_vpc" "default" {
-
 }
 
 resource "aws_security_group" "allow_user_to_connect" {
@@ -15,6 +14,13 @@ resource "aws_security_group" "allow_user_to_connect" {
     description = "port 22 allow"
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "port 8080 allow"
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
